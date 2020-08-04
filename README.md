@@ -16,6 +16,11 @@ After building these two models, they will be trained and tested with datasets o
 
 Overall, the Regression model shows a below average performance with accuracy of only about 50% while the CNN model generates predictions with acceptable accuracy of over 70%. This could be because they are fitted with only images of size 50x50 due to the lack of powerful hardware. It is clear that CNN models outperforms Regression in the problem of image classification.
 
+The related files of this project could be found in the links below:
+- Kaggle: https://www.kaggle.com/c/dogs-vs-cats (only the dataset)
+- Github: https://github.com/datvienhuynh/dogs-cats-prediction (all related files include Python Notebook)
+
+
 ## 2. DATASET
 The two models are trained and tested with the Dogs vs. Cats dataset from Kaggle Competition
 https://www.kaggle.com/c/dogs-vs-cats/
