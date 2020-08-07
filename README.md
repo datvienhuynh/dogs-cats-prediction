@@ -18,6 +18,7 @@ Overall, the Regression model shows a below average performance with accuracy of
 
 The related files of this project could be found in the links below:
 - Kaggle: https://www.kaggle.com/c/dogs-vs-cats (only the dataset)
+- Google Drive: https://drive.google.com/file/d/1pzN57cHrgCMofXVC3bpnxRhpMa6mWsRO/view?usp=sharing
 - Github: https://github.com/datvienhuynh/dogs-cats-prediction (all related files include Python Notebook)
 
 
@@ -35,15 +36,15 @@ Modify variables below to determine the quantity and quality of images for train
 - DATASET_SIZE: Control the number of images pulled out from the directory dataset. Modify its value in range [100, 25000] based on the training and testing purpose
 - REGRESSION_DATASET: Setup dataset size for training Regression model. REGRESSION_DATASET <= DATASET_SIZE
 - UNLABELED_CHECK_SAMPLES: Setup the number of unlabeled images for manually checking. UNLABELED_CHECK_SAMPLES <= 25,000
-- EVALUATE_SAMPLES: Setup dataset size for evaluating activation functions/optimizers. EVALUATE_SAMPLES <= DATASET_SIZE
-- IMG_HEIGHT, IMG_WIDTH: Setup the image resolution. 50x50 - 100x100 is recommended, everything above 200x200 will result in a significant amount of training time or even kernel's death.
+- EVALUATE_SAMPLES: Setup dataset size for evaluating activation functions/optimizers. EVALUATE_SAMPLES <= DATASET_SIZE. To generate the same results in the report, set EVALUATE_SAMPLES = 10,000 and DATASET_SIZE >= 10,000
+- IMG_HEIGHT, IMG_WIDTH: Setup the image resolution. 50x50 - 100x100 is recommended, everything above 200x200 will result in a significant amount of training time or even kernel's death
 
 ### Process Train & Test Dataset
 Convert the TensorFlow datasets to a vector form of grayscale Tensor images and labels.
 
-- Use Dataset.map to create a dataset of Tensor (image, label) pairs. The label of each image is created based on its name such as 'dog.123.jpg' and 'cat.123.jpg'.
-- Convert and flattem images into vector forms to fit the Regression model.
-- Convert images to grayscale (1 dimension) and Numpy array to fit the CNN model.
+- Use Dataset.map to create a dataset of Tensor (image, label) pairs. The label of each image is created based on its name such as 'dog.123.jpg' and 'cat.123.jpg'
+- Convert and flattem images into vector forms to fit the Regression model
+- Convert images to grayscale (1 dimension) and Numpy array to fit the CNN model
 - Convert labels to One Hot vectors 0: [1. 0.] (Dog) and 1: [0. 1.] (Cat)
 
 ### Build Logistic Regression Model

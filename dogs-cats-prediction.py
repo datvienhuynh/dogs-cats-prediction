@@ -69,16 +69,16 @@ print('Number of unlabeled samples: ', len(list(predict_dir)))
 # As the dataset is quite large, a variable is setup 
 # to control the number of images pulled out from the directory dataset
 # Modify its value in range [100, 25000] based on the training and testing purpose
-DATASET_SIZE = 1000
+DATASET_SIZE = 10000
 # Setup dataset size for training Regression model
 # REGRESSION_DATASET <= DATASET_SIZE
-REGRESSION_DATASET = 500
+REGRESSION_DATASET = 5000
 # Setup the number of unlabeled images for manually checking
 # UNLABELED_CHECK_SAMPLES <= 25,0000
 UNLABELED_CHECK_SAMPLES = 3
 # Setup dataset size for evaluating activation functions/optimizers
 # EVALUATE_SAMPLES <= DATASET_SIZE
-EVALUATE_SAMPLES = 50
+EVALUATE_SAMPLES = 500
 # Setup the image resolution. 50x50 - 100x100 is recommended,
 # everything above 200x200 will result in a significant amount of training time or even kernel's death
 IMG_HEIGHT = 50
@@ -86,6 +86,7 @@ IMG_WIDTH = 50
 
 
 # # Create Train & Test Dataset
+print('Processing data...')
 # Count the number of dogs and cats
 dog_samples = 0
 cat_samples = 0
@@ -283,9 +284,10 @@ test_acccuracy = np.empty((0))
 
 # Create list of activation functions
 activation_functions = ['elu', 'selu', 'relu', 'tanh', 'sigmoid', 'hard_sigmoid', 'softplus', 'softsign', 'linear']
+print('ACTIVATION FUNCTIONS EVALUATION')
 for activation in activation_functions:
     print('Evaluating model with %s activation function >>> ' %activation, end='')
-    training_stats, model = train_CNN(activation=activation, optimizer='SGD', epochs=10)
+    training_stats, model = train_CNN(activation=activation, optimizer='SGD', epochs=5)
     train_accuracy = np.append(train_accuracy, training_stats.history['accuracy'][-1])
     test_acccuracy = np.append(test_acccuracy, model.evaluate(test_X, test_Y, verbose=0)[1])
     
@@ -298,9 +300,10 @@ test_acccuracy = np.empty((0))
 
 # Create list of optimizers
 optimization_functions = ['SGD', 'RMSprop', 'Adagrad', 'Adadelta', 'Adam', 'Adamax', 'Nadam']
+print('OPTIMIZER EVALUATION')
 for optimizer in optimization_functions:
     print('Evaluating model with %s optimizer >>> ' %optimizer, end='')
-    training_stats, model = train_CNN(activation='relu', optimizer=optimizer, epochs=10)
+    training_stats, model = train_CNN(activation='relu', optimizer=optimizer, epochs=5)
     train_accuracy = np.append(train_accuracy, training_stats.history['accuracy'][-1])
     test_acccuracy = np.append(test_acccuracy, model.evaluate(test_X, test_Y, verbose=0)[1])
     
